@@ -5,28 +5,14 @@ export interface Figure {
 }
 
 export class Triangle implements Figure {
-  shape: 'triangle';
-
-  color: 'red' | 'green' | 'blue';
-
-  a: number;
-
-  b: number;
-
-  c: number;
+  readonly shape = 'triangle';
 
   constructor(
-    color: 'red' | 'green' | 'blue',
-    a: number,
-    b: number,
-    c: number,
+    public color: 'red' | 'green' | 'blue',
+    private a: number,
+    private b: number,
+    private c: number,
   ) {
-    this.shape = 'triangle';
-    this.color = color;
-    this.a = a;
-    this.b = b;
-    this.c = c;
-
     if (a <= 0 || b <= 0 || c <= 0) {
       throw new Error('Side lengths must be greater than zero');
     }
@@ -48,17 +34,12 @@ export class Triangle implements Figure {
 }
 
 export class Circle implements Figure {
-  shape: 'circle';
+  readonly shape = 'circle';
 
-  color: 'red' | 'green' | 'blue';
-
-  radius: number;
-
-  constructor(color: 'red' | 'green' | 'blue', radius: number) {
-    this.shape = 'circle';
-    this.color = color;
-    this.radius = radius;
-
+  constructor(
+    public color: 'red' | 'green' | 'blue',
+    private radius: number,
+  ) {
     if (radius <= 0) {
       throw new Error('Radius must be greater than zero');
     }
@@ -72,27 +53,20 @@ export class Circle implements Figure {
 }
 
 export class Rectangle implements Figure {
-  shape: 'rectangle';
+  readonly shape = 'rectangle';
 
-  color: 'red' | 'green' | 'blue';
-
-  width: number;
-
-  height: number;
-
-  constructor(color: 'red' | 'green' | 'blue', width: number, height: number) {
-    this.shape = 'rectangle';
-    this.color = color;
-    this.width = width;
-    this.height = height;
-
+  constructor(
+    public color: 'red' | 'green' | 'blue',
+    private width: number,
+    private height: number,
+  ) {
     if (width <= 0 || height <= 0) {
       throw new Error('Width and height must be greater than zero');
     }
   }
 
   getArea(): number {
-    return Math.round(this.width * this.height * 100) / 100;
+    return Math.floor(this.width * this.height * 100) / 100;
   }
 }
 
