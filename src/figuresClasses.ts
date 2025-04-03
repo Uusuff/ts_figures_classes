@@ -26,7 +26,7 @@ export class Triangle implements Figure {
     const s = (this.a + this.b + this.c) / 2;
 
     return (
-      Math.round(
+      Math.floor(
         Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c)) * 100,
       ) / 100
     );
