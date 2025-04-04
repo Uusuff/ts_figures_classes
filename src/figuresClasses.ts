@@ -1,17 +1,28 @@
+export enum ColorType {
+  Red = 'red',
+  Green = 'green',
+  Blue = 'blue',
+}
+
+export enum ShapeType {
+  Triangle = 'triangle',
+  Circle = 'circle',
+  Rectangle = 'rectangle',
+}
+
 export interface Figure {
-  shape: 'triangle' | 'circle' | 'rectangle';
-  color: 'red' | 'green' | 'blue';
+  shape: ShapeType;
+  color: ColorType;
   getArea(): number;
 }
 
 export class Triangle implements Figure {
-  readonly shape = 'triangle';
-
   constructor(
-    public color: 'red' | 'green' | 'blue',
+    public color: ColorType,
     private a: number,
     private b: number,
     private c: number,
+    public shape: ShapeType = ShapeType.Triangle,
   ) {
     if (a <= 0 || b <= 0 || c <= 0) {
       throw new Error('Side lengths must be greater than zero');
@@ -34,11 +45,10 @@ export class Triangle implements Figure {
 }
 
 export class Circle implements Figure {
-  readonly shape = 'circle';
-
   constructor(
-    public color: 'red' | 'green' | 'blue',
+    public color: ColorType,
     private radius: number,
+    public shape: ShapeType = ShapeType.Circle,
   ) {
     if (radius <= 0) {
       throw new Error('Radius must be greater than zero');
@@ -53,12 +63,11 @@ export class Circle implements Figure {
 }
 
 export class Rectangle implements Figure {
-  readonly shape = 'rectangle';
-
   constructor(
-    public color: 'red' | 'green' | 'blue',
+    public color: ColorType,
     private width: number,
     private height: number,
+    public shape: ShapeType = ShapeType.Rectangle,
   ) {
     if (width <= 0 || height <= 0) {
       throw new Error('Width and height must be greater than zero');
